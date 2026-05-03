@@ -9,61 +9,46 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <title>E-commerce Admin</title>
     <!-- Custom CSS for Sidebar -->
-    <style>
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
+<style>
+    /* Reset Link Styles */
+    .custom-nav-link {
+        display: flex;
+        align-items: center;
+        font-size: 0.95rem;
+        padding: 0.65rem 1rem 0.65rem 1.5rem; /* Indent text slightly */
+        color: #4b5563; /* Gray text */
+        border-radius: 0 8px 8px 0; /* Rounded right side */
+        transition: all 0.2s ease-in-out;
+        font-weight: 500;
+        margin-left: -1rem; /* Pull back to edge */
+        border-left: 4px solid transparent;
+    }
+    
+    /* Hover Effect */
+    .custom-nav-link:hover {
+        background-color: #f3f4f6;
+        color: #111827;
+    }
 
-        /* Reset Link Styles */
-        .custom-nav-link {
-            display: flex;
-            align-items: center;
-            font-size: 0.95rem;
-            padding: 0.65rem 1rem 0.65rem 1.5rem;
-            color: #4b5563;
-            border-radius: 0 8px 8px 0;
-            transition: all 0.2s ease-in-out;
-            font-weight: 500;
-            margin-left: -1rem;
-            border-left: 4px solid transparent;
-        }
-        
-        /* Hover Effect */
-        .custom-nav-link:hover {
-            background-color: #f3f4f6;
-            color: #111827;
-        }
-
-        /* Active State */
-        .active-link {
-            background-color: #eff6ff !important;
-            color: #2563eb !important;
-            border-left: 4px solid #2563eb;
-        }
-        
-        /* Icon color when active */
-        .active-link i {
-            color: #2563eb !important;
-        }
-
-        /* Sidebar fixed position */
-        .sidebar-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 260px;
-            height: 100vh;
-            z-index: 100;
-        }
-    </style>
+    /* Active State (Matches Image) */
+    .active-link {
+        background-color: #eff6ff !important; /* Light blue background */
+        color: #2563eb !important; /* Primary blue text */
+        border-left: 4px solid #2563eb; /* Blue left border */
+    }
+    
+    /* Icon color when active */
+    .active-link i {
+        color: #2563eb !important;
+    }
+</style>
+    <title>E-commerce Admin</title>
 </head>
 <body>
-
-<!-- Sidebar Container (Fixed) -->
-<div class="sidebar-wrapper d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm">
+<link rel="stylesheet" href=''>
+<!-- Sidebar Container -->
+<div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm" style="width: 260px; min-height: 100vh;">
     
     <!-- Logo & Title -->
     <a href="#" class="d-flex align-items-center mb-4 mt-2 me-md-auto link-dark text-decoration-none px-3">
@@ -108,7 +93,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
     </ul>
 </div>
 
+</body>
+</html>
+
 <!-- 
-    Note: This file does NOT close </body> and </html>.
-    The page that includes sidebar.php must close them.
+    Make sure to include these CDNs in your main layout <head> if not already present:
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 -->
