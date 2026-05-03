@@ -84,7 +84,7 @@ $products = $stmt->get_result();
 <?php include 'sidebar.php'; ?>
 
 <!-- Main Content -->
-<div style="margin-left: 260px; padding: 40px; background-color: #f8f9fa; min-height: 100vh;">
+<div style="flex: 1; padding: 30px 35px; background-color: #f8f9fa; min-height: 100vh;">
 
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-start mb-4">
