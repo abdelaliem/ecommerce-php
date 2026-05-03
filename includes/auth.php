@@ -35,3 +35,7 @@ if (!function_exists('requireAdmin')) {
         }
     }
 }
+
+// Admin  → admin@admin.com      / admin123
+// Admin2 → superadmin@admin.com / password123
+// User   → sara@example.com     / password123
