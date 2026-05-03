@@ -71,9 +71,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li class="nav-item">
-            <a href="orders.php" class="nav-link custom-nav-link <?= ($current_page == 'orders.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-journal-text me-3 fs-5"></i>
-                Orders
+            <a href="users.php" class="nav-link custom-nav-link <?= ($current_page == 'users.php') ? 'active-link' : '' ?>">
+                <i class="bi bi-people me-3 fs-5"></i>
+                Users
             </a>
         </li>
         <li class="nav-item">
@@ -83,15 +83,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li class="nav-item">
-            <a href="users.php" class="nav-link custom-nav-link <?= ($current_page == 'users.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-people me-3 fs-5"></i>
-                Customers
+            <a href="orders.php" class="nav-link custom-nav-link <?= ($current_page == 'orders.php') ? 'active-link' : '' ?>">
+                <i class="bi bi-journal-text me-3 fs-5"></i>
+                Orders
             </a>
         </li>
         <li class="nav-item">
             <a href="orderitems.php" class="nav-link custom-nav-link <?= ($current_page == 'orderitems.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-gear me-3 fs-5"></i>
-                Settings
+                <i class="bi bi-journal-text me-3 fs-5"></i>
+                Orderitems
             </a>
         </li>
     </ul>
