@@ -61,9 +61,21 @@ $current_page = basename($_SERVER['PHP_SELF']);
     <!-- Navigation Links -->
     <ul class="nav nav-pills flex-column mb-auto gap-1">
         <li class="nav-item">
-            <a href="dashboard.php" class="nav-link custom-nav-link <?= ($current_page == 'dashboard.php' || $current_page == 'index.php' || $current_page == '') ? 'active-link' : '' ?>" aria-current="page">
+            <a href="home.php" class="nav-link custom-nav-link <?= ($current_page == 'home.php') ? 'active-link' : '' ?>" aria-current="page">
                 <i class="bi bi-grid me-3 fs-5"></i>
                 Dashboard
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="users.php" class="nav-link custom-nav-link <?= ($current_page == 'users.php') ? 'active-link' : '' ?>">
+                <i class="bi bi-people me-3 fs-5"></i>
+                Users
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="inventory.php" class="nav-link custom-nav-link <?= ($current_page == 'inventory.php') ? 'active-link' : '' ?>">
+                <i class="bi bi-box me-3 fs-5"></i>
+                Inventory
             </a>
         </li>
         <li class="nav-item">
@@ -73,15 +85,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
         <li class="nav-item">
-            <a href="customers.php" class="nav-link custom-nav-link <?= ($current_page == 'customers.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-people me-3 fs-5"></i>
-                Customers
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="settings.php" class="nav-link custom-nav-link <?= ($current_page == 'settings.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-gear me-3 fs-5"></i>
-                Settings
+            <a href="orderitems.php" class="nav-link custom-nav-link <?= ($current_page == 'orderitems.php') ? 'active-link' : '' ?>">
+                <i class="bi bi-journal-text me-3 fs-5"></i>
+                OrderItems
             </a>
         </li>
     </ul>
