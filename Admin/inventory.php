@@ -51,16 +51,36 @@ $per_page = 10;
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
 $offset = ($page - 1) * $per_page;
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+$filter_category = isset($_GET['category']) ? trim($_GET['category']) : '';
+
+// Fetch all categories for the filter dropdown
+$cat_result = $conn->query("SELECT DISTINCT category FROM products WHERE category IS NOT NULL AND category != '' ORDER BY category");
+$categories = [];
+while ($cat_row = $cat_result->fetch_assoc()) {
+    $categories[] = $cat_row['category'];
+}
 
 $where = '';
+$conditions = [];
 $params = [];
 $types = '';
 
 if ($search !== '') {
-    $where = "WHERE name LIKE ? OR category LIKE ?";
+    $conditions[] = "(name LIKE ? OR category LIKE ?)";
     $search_param = "%$search%";
-    $params = [$search_param, $search_param];
-    $types = 'ss';
+    $params[] = $search_param;
+    $params[] = $search_param;
+    $types .= 'ss';
+}
+
+if ($filter_category !== '') {
+    $conditions[] = "category = ?";
+    $params[] = $filter_category;
+    $types .= 's';
+}
+
+if (!empty($conditions)) {
+    $where = 'WHERE ' . implode(' AND ', $conditions);
 }
 
 $count_sql = "SELECT COUNT(*) as total FROM products $where";
@@ -102,22 +122,32 @@ $products = $stmt->get_result();
         <div class="card-body p-4">
 
             <!-- Search & Actions -->
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <form method="GET" class="d-flex" style="max-width: 400px; flex: 1;">
+            <form method="GET" class="d-flex justify-content-between align-items-center mb-4">
+                <div class="d-flex" style="max-width: 400px; flex: 1;">
                     <div class="input-group" style="border: 1px solid #d1d5db; border-radius: 8px; overflow: hidden;">
                         <span class="input-group-text bg-white border-0"><i class="bi bi-search text-muted"></i></span>
                         <input type="text" name="search" class="form-control border-0 shadow-none" placeholder="Search by name, SKU..." value="<?= htmlspecialchars($search) ?>" style="font-size: 0.9rem;">
                     </div>
-                </form>
+                </div>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-outline-secondary d-flex align-items-center gap-2" style="border-radius: 8px; font-size: 0.9rem; border-color: #d1d5db;">
-                        <i class="bi bi-funnel"></i> Filter
-                    </button>
-                    <button class="btn btn-outline-secondary d-flex align-items-center gap-2" style="border-radius: 8px; font-size: 0.9rem; border-color: #d1d5db;">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary d-flex align-items-center gap-2 dropdown-toggle" type="button" data-bs-toggle="dropdown" style="border-radius: 8px; font-size: 0.9rem; border-color: #d1d5db;">
+                            <i class="bi bi-funnel"></i>
+                            <?= $filter_category ? htmlspecialchars($filter_category) : 'Filter' ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" style="border-radius: 8px; border: 1px solid #e5e7eb; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                            <li><a class="dropdown-item <?= $filter_category === '' ? 'active' : '' ?>" href="?search=<?= urlencode($search) ?>">All Categories</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <?php foreach ($categories as $cat): ?>
+                            <li><a class="dropdown-item <?= $filter_category === $cat ? 'active' : '' ?>" href="?category=<?= urlencode($cat) ?>&search=<?= urlencode($search) ?>"><?= htmlspecialchars($cat) ?></a></li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary d-flex align-items-center gap-2" style="border-radius: 8px; font-size: 0.9rem; border-color: #d1d5db;">
                         <i class="bi bi-download"></i> Export
                     </button>
                 </div>
-            </div>
+            </form>
 
             <!-- Table -->
             <div class="table-responsive">
