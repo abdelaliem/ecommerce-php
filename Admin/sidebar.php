@@ -4,6 +4,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,50 +50,69 @@ $current_page = basename($_SERVER['PHP_SELF']);
         }
     </style>
 </head>
+
 <body>
-<div class="d-flex">
-<!-- Sidebar Container -->
-<div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm" style="width: 260px; min-height: 100vh; position: sticky; top: 0;">
-    
-    <!-- Logo & Title -->
-    <a href="#" class="d-flex align-items-center mb-4 mt-2 me-md-auto link-dark text-decoration-none px-3">
-        <div>
-            <span class="fs-6 fw-bold text-primary" style="color: #2563eb !important; letter-spacing: 0.5px;">Admin Panel</span><br>
-            <small class="text-muted" style="font-size: 0.75rem; color: #6b7280 !important;">Management Console</small>
+    <div class="d-flex">
+        <!-- Sidebar Container -->
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-white border-end shadow-sm"
+            style="width: 260px; min-height: 100vh; position: sticky; top: 0;">
+
+            <!-- Logo & Title -->
+            <a href="#" class="d-flex align-items-center mb-4 mt-2 me-md-auto link-dark text-decoration-none px-3">
+                <div>
+                    <span class="fs-6 fw-bold text-primary"
+                        style="color: #2563eb !important; letter-spacing: 0.5px;">Admin Panel</span><br>
+                    <small class="text-muted" style="font-size: 0.75rem; color: #6b7280 !important;">Management
+                        Console</small>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav nav-pills flex-column mb-auto gap-1">
+                <li class="nav-item">
+                    <a href="home.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'home.php') ? 'active-link' : '' ?>"
+                        aria-current="page">
+                        <i class="bi bi-grid me-3 fs-5"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="users.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'users.php') ? 'active-link' : '' ?>">
+                        <i class="bi bi-people me-3 fs-5"></i>
+                        Users
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="inventory.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'inventory.php') ? 'active-link' : '' ?>">
+                        <i class="bi bi-box me-3 fs-5"></i>
+                        Inventory
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="orders.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'orders.php') ? 'active-link' : '' ?>">
+                        <i class="bi bi-journal-text me-3 fs-5"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="orderitems.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'orderitems.php') ? 'active-link' : '' ?>">
+                        <i class="bi bi-journal-text me-3 fs-5"></i>
+                        Orderitems
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Logout -->
+            <div style="margin-top: auto; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+                <a href="../logout.php" class="nav-link custom-nav-link" style="color: #dc2626;">
+                    <i class="bi bi-box-arrow-right me-3 fs-5"></i>
+                    Logout
+                </a>
+            </div>
         </div>
-    </a>
-    
-    <!-- Navigation Links -->
-    <ul class="nav nav-pills flex-column mb-auto gap-1">
-        <li class="nav-item">
-            <a href="home.php" class="nav-link custom-nav-link <?= ($current_page == 'home.php') ? 'active-link' : '' ?>" aria-current="page">
-                <i class="bi bi-grid me-3 fs-5"></i>
-                Dashboard
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="users.php" class="nav-link custom-nav-link <?= ($current_page == 'users.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-people me-3 fs-5"></i>
-                Users
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="inventory.php" class="nav-link custom-nav-link <?= ($current_page == 'inventory.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-box me-3 fs-5"></i>
-                Inventory
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="orders.php" class="nav-link custom-nav-link <?= ($current_page == 'orders.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-journal-text me-3 fs-5"></i>
-                Orders
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="orderitems.php" class="nav-link custom-nav-link <?= ($current_page == 'orderitems.php') ? 'active-link' : '' ?>">
-                <i class="bi bi-journal-text me-3 fs-5"></i>
-                Orderitems
-            </a>
-        </li>
-    </ul>
-</div>
+    <!-- /Sidebar Container - outer d-flex wrapper closed by each page -->
