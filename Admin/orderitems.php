@@ -100,7 +100,6 @@ $items = $stmt->get_result();
                                     <td style="padding: 18px 20px; color: #6b7280;">
                                         <?= date('M d, Y', strtotime($item['created_at'])) ?>
                                     </td>
-                                    <<<<<<< HEAD=======>>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>
@@ -115,12 +114,10 @@ $items = $stmt->get_result();
             </div>
 
             <!-- Pagination -->
-            <<<<<<< HEAD <div class="d-flex justify-content-between align-items-center px-4 py-3"
+             <div class="d-flex justify-content-between align-items-center px-4 py-3"
                 style="border-top: 1px solid #e5e7eb;">
-                =======
                 <div class="d-flex justify-content-between align-items-center px-4 py-3"
                     style="border-top: 1px solid #e5e7eb;">
-                    >>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
                     <span style="color: #6b7280; font-size: 0.85rem;">
                         Showing <?= $total_items > 0 ? $offset + 1 : 0 ?>
                         to <?= min($offset + $per_page, $total_items) ?>
@@ -201,13 +198,8 @@ $items = $stmt->get_result();
         background: #f9fafb !important;
     }
 
-    >>>>>>>6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-<<<<<<< HEAD </html>
-    =======
-
     </html>
-    >>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
