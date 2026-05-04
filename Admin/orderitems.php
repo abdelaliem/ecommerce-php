@@ -144,7 +144,7 @@ $items = $stmt->get_result();
 </div>
 
 <style>
-    <<<<<<< HEAD .order-th {
+ .order-th {
         color: #6b7280;
         font-weight: 600;
         font-size: 0.85rem;
