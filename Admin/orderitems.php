@@ -9,6 +9,7 @@ requireAdmin(1);
 // Pagination
 $per_page = 5;
 $page = isset($_GET['page']) ? max(1, (int) $_GET['page']) : 1;
+
 $offset = ($page - 1) * $per_page;
 
 // Count total
@@ -99,6 +100,7 @@ $items = $stmt->get_result();
                                     <td style="padding: 18px 20px; color: #6b7280;">
                                         <?= date('M d, Y', strtotime($item['created_at'])) ?>
                                     </td>
+                                    <<<<<<< HEAD=======>>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>
@@ -113,35 +115,39 @@ $items = $stmt->get_result();
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-between align-items-center px-4 py-3"
+            <<<<<<< HEAD <div class="d-flex justify-content-between align-items-center px-4 py-3"
                 style="border-top: 1px solid #e5e7eb;">
-                <span style="color: #6b7280; font-size: 0.85rem;">
-                    Showing <?= $total_items > 0 ? $offset + 1 : 0 ?>
-                    to <?= min($offset + $per_page, $total_items) ?>
-                    of <?= $total_items ?> entries
-                </span>
+                =======
+                <div class="d-flex justify-content-between align-items-center px-4 py-3"
+                    style="border-top: 1px solid #e5e7eb;">
+                    >>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
+                    <span style="color: #6b7280; font-size: 0.85rem;">
+                        Showing <?= $total_items > 0 ? $offset + 1 : 0 ?>
+                        to <?= min($offset + $per_page, $total_items) ?>
+                        of <?= $total_items ?> entries
+                    </span>
 
-                <nav>
-                    <ul class="pagination pagination-sm mb-0 gap-1">
+                    <nav>
+                        <ul class="pagination pagination-sm mb-0 gap-1">
 
-                        <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-                            <a class="page-link custom-page-link" href="?page=<?= $page - 1 ?>">Previous</a>
-                        </li>
+                            <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                                <a class="page-link custom-page-link" href="?page=<?= $page - 1 ?>">Previous</a>
+                            </li>
 
-                        <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
-                            <a class="page-link custom-page-link" href="?page=<?= $page + 1 ?>">Next</a>
-                        </li>
+                            <li class="page-item <?= ($page >= $total_pages) ? 'disabled' : '' ?>">
+                                <a class="page-link custom-page-link" href="?page=<?= $page + 1 ?>">Next</a>
+                            </li>
 
-                    </ul>
-                </nav>
-            </div>
+                        </ul>
+                    </nav>
+                </div>
 
         </div>
     </div>
 </div>
 
 <style>
-    .order-th {
+    <<<<<<< HEAD .order-th {
         color: #6b7280;
         font-weight: 600;
         font-size: 0.85rem;
@@ -167,9 +173,41 @@ $items = $stmt->get_result();
         color: #9ca3af !important;
         background: #f9fafb !important;
     }
+
+    =======.order-th {
+        color: #6b7280;
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 14px 20px;
+        border-top: none;
+        background-color: #fff;
+    }
+
+    .custom-page-link {
+        border: 1px solid #d1d5db !important;
+        color: #374151 !important;
+        border-radius: 6px !important;
+        padding: 6px 14px !important;
+        font-size: 0.85rem !important;
+        background: #fff !important;
+    }
+
+    .custom-page-link:hover {
+        background: #f9fafb !important;
+    }
+
+    .page-item.disabled .custom-page-link {
+        color: #9ca3af !important;
+        background: #f9fafb !important;
+    }
+
+    >>>>>>>6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<<<<<<< HEAD </html>
+    =======
 
-</html>
+    </html>
+    >>>>>>> 6954a2cd301e5ebab8e00acc48164f4b0bc7f1dc
