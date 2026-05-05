@@ -125,11 +125,10 @@ if (isset($_SESSION['cart'])) {
                 <a href="shop.php" class="nav-link active">Shop</a>
             </div>
             <div class="nav-right">
-                <a href="shopping-cart.php" class="cart-icon">
-                    🛒
-                    <?php if ($cart_count > 0): ?>
-                        <span class="cart-badge"><?= $cart_count ?></span>
-                    <?php endif; ?>
+                <a href="shopping-cart.php" class="cart-icon" title="Cart">
+                    <?php if ($cart_count > 0): ?><span class="cart-badge"><?= $cart_count ?></span><?php endif; ?>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+
                 </a>
                 <?php if (isLoggedIn()): ?>
                     <span class="user-greeting">Hi, <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong></span>
