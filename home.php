@@ -1,7 +1,7 @@
 <?php
 require_once 'includes/db.php';
 require_once 'includes/auth.php';
-requireLogin();
+// Home page is public — no requireLogin() call
 
 // Fetch all products from DB
 $products = [];
@@ -113,8 +113,8 @@ if (isset($_SESSION['cart'])) {
                     <?php endif; ?>
                     <a href="logout.php" class="text-sm text-red-500 hover:underline">Logout</a>
                 <?php else: ?>
-                    <a href="login.php" class="hover:text-blue-900 transition-colors">
-                        <span class="material-symbols-outlined">account_circle</span>
+                    <a href="login.php" class="text-sm font-medium bg-primary text-on-primary px-5 py-2 rounded-DEFAULT hover:bg-on-primary-fixed-variant transition-colors">
+                        Login
                     </a>
                 <?php endif; ?>
             </div>

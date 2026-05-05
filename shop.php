@@ -139,7 +139,7 @@ if (isset($_SESSION['cart'])) {
                     <?php endif; ?>
                     <a href="logout.php" class="btn btn-secondary" style="color: #dc2626; border-color: #dc2626;">Logout</a>
                 <?php else: ?>
-                    <a href="login.php" class="nav-link">👤</a>
+                    <a href="login.php" class="btn btn-primary">Login</a>
                 <?php endif; ?>
             </div>
         </div>
