@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="reg-password">Password</label>
                     <div class="password-wrapper">
                         <input type="password" id="reg-password" name="password" placeholder="Min. 6 characters"
-                            autocomplete="new-password" oninput="checkStrength(this.value)" required>
+                            autocomplete="new-password" required>
                         <button type="button" class="toggle-pw" onclick="togglePassword('reg-password', this)"
                             aria-label="Toggle password visibility">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none"
@@ -153,10 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </svg>
                         </button>
                     </div>
-                    <div class="pw-strength-bar">
-                        <div class="pw-strength-fill" id="pw-bar"></div>
-                    </div>
-                    <div class="pw-strength-label" id="pw-label"></div>
+
                 </div>
 
                 <div class="form-group">
@@ -198,31 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 : `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
         }
 
-        function checkStrength(val) {
-            const bar = document.getElementById('pw-bar');
-            const label = document.getElementById('pw-label');
-            if (!val) { bar.style.width = '0%'; label.textContent = ''; return; }
-
-            let score = 0;
-            if (val.length >= 6) score++;
-            if (val.length >= 10) score++;
-            if (/[A-Z]/.test(val)) score++;
-            if (/[0-9]/.test(val)) score++;
-            if (/[^A-Za-z0-9]/.test(val)) score++;
-
-            const levels = [
-                { w: '20%', c: '#ef4444', t: 'Very weak' },
-                { w: '40%', c: '#f97316', t: 'Weak' },
-                { w: '60%', c: '#eab308', t: 'Fair' },
-                { w: '80%', c: '#3b82f6', t: 'Good' },
-                { w: '100%', c: '#22c55e', t: 'Strong' },
-            ];
-            const lvl = levels[Math.min(score - 1, 4)] || levels[0];
-            bar.style.width = lvl.w;
-            bar.style.background = lvl.c;
-            label.textContent = lvl.t;
-            label.style.color = lvl.c;
-        }
     </script>
 </body>
 
