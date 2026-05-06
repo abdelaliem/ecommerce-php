@@ -101,8 +101,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <li class="nav-item">
                     <a href="orderitems.php"
                         class="nav-link custom-nav-link <?= ($current_page == 'orderitems.php') ? 'active-link' : '' ?>">
-                        <i class="bi bi-journal-text me-3 fs-5"></i>
+                        <i class="bi bi-list-check me-3 fs-5"></i>
                         Orderitems
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="chat.php"
+                        class="nav-link custom-nav-link <?= ($current_page == 'chat.php') ? 'active-link' : '' ?>">
+                        <i class="bi bi-chat-dots me-3 fs-5"></i>
+                        Support Chat
                     </a>
                 </li>
             </ul>
