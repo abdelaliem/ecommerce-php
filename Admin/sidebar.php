@@ -105,13 +105,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                         Orderitems
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="chat.php"
-                        class="nav-link custom-nav-link <?= ($current_page == 'chat.php') ? 'active-link' : '' ?>">
-                        <i class="bi bi-chat-dots me-3 fs-5"></i>
-                        Support Chat
-                    </a>
-                </li>
             </ul>
 
             <!-- Logout -->
