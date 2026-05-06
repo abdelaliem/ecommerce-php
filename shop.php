@@ -1,8 +1,6 @@
 <?php
 require_once 'includes/db.php';
 require_once 'includes/auth.php';
-requireLogin();
-
 // Fetch all products from DB
 $products = [];
 $result = $conn->query("SELECT * FROM products ORDER BY created_at DESC");
@@ -117,40 +115,14 @@ if (isset($_SESSION['cart'])) {
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <a href="home.php" class="navbar-brand">AuraCommerce</a>
-            <div class="nav-menu">
-                <a href="home.php" class="nav-link">Home</a>
-                <a href="shop.php" class="nav-link active">Shop</a>
-            </div>
-            <div class="nav-right">
-                <a href="shopping-cart.php" class="cart-icon" title="Cart">
-                    <?php if ($cart_count > 0): ?><span class="cart-badge"><?= $cart_count ?></span><?php endif; ?>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-
-                </a>
-                <?php if (isLoggedIn()): ?>
-                    <span class="user-greeting">Hi, <strong><?= htmlspecialchars($_SESSION['user_name']) ?></strong></span>
-                    <?php if (isAdmin()): ?>
-                        <a href="Admin/home.php" class="btn btn-primary">Admin</a>
-                    <?php else: ?>
-                        <a href="dashboard.php" class="nav-link">👤</a>
-                    <?php endif; ?>
-                    <a href="logout.php" class="btn btn-secondary" style="color: #dc2626; border-color: #dc2626;">Logout</a>
-                <?php else: ?>
-                    <a href="login.php" class="btn btn-primary">Login</a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </nav>
+    <?php include 'includes/header.php'; ?>
 
     <!-- Flash message -->
     <?php if (isset($_SESSION['flash'])): ?>
-        <div class="flash-message">
-            <?= htmlspecialchars($_SESSION['flash']) ?>
-            <?php unset($_SESSION['flash']); ?>
-        </div>
+                <div class="flash-message">
+                    <?= htmlspecialchars($_SESSION['flash']) ?>
+                    <?php unset($_SESSION['flash']); ?>
+                </div>
     <?php endif; ?>
 
     <main>
@@ -170,10 +142,10 @@ if (isset($_SESSION['cart'])) {
                         All (<?= count($products) ?>)
                     </button>
                     <?php foreach ($categories as $cat): ?>
-                        <?php $count = count(array_filter($products, fn($p) => $p['category'] === $cat)); ?>
-                        <button class="filter-btn" data-filter="<?= htmlspecialchars($cat) ?>">
-                            <?= htmlspecialchars($cat) ?> (<?= $count ?>)
-                        </button>
+                                <?php $count = count(array_filter($products, fn($p) => $p['category'] === $cat)); ?>
+                                <button class="filter-btn" data-filter="<?= htmlspecialchars($cat) ?>">
+                                    <?= htmlspecialchars($cat) ?> (<?= $count ?>)
+                                </button>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -187,40 +159,40 @@ if (isset($_SESSION['cart'])) {
                 </div>
 
                 <?php if (empty($products)): ?>
-                    <div class="empty-state">
-                        <p class="empty-state-message">No products available at the moment.</p>
-                    </div>
-                <?php else: ?>
-                    <div class="product-grid" id="product-grid">
-                        <?php foreach ($products as $p): ?>
-                            <div class="product-card" data-category="<?= htmlspecialchars($p['category'] ?? '') ?>">
-                                <a href="product.php?id=<?= $p['id'] ?>" class="product-image-wrap">
-                                    <img alt="<?= htmlspecialchars($p['name']) ?>" class="product-image"
-                                        src="<?= htmlspecialchars($p['image'] ?? 'https://via.placeholder.com/400') ?>" />
-                                    <?php if ($p['stock'] <= 0): ?>
-                                        <span class="product-badge badge-stock-out">OUT OF STOCK</span>
-                                    <?php elseif ($p['stock'] < 5): ?>
-                                        <span class="product-badge badge-stock-low">LOW STOCK</span>
-                                    <?php else: ?>
-                                        <span class="product-badge badge-category"><?= htmlspecialchars($p['category'] ?? 'NEW') ?></span>
-                                    <?php endif; ?>
-                                </a>
-                                <div class="product-info">
-                                    <a href="product.php?id=<?= $p['id'] ?>" class="product-name"><?= htmlspecialchars($p['name']) ?></a>
-                                    <p class="product-price">$<?= number_format($p['price'], 2) ?></p>
-                                    <div class="product-actions">
-                                        <form action="cart-action.php" method="POST">
-                                            <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
-                                            <input type="hidden" name="action" value="add">
-                                            <button type="submit" class="btn btn-primary" <?= $p['stock'] <= 0 ? 'disabled' : '' ?>>
-                                                <?= $p['stock'] <= 0 ? 'Out of Stock' : 'Add to Cart' ?>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
+                            <div class="empty-state">
+                                <p class="empty-state-message">No products available at the moment.</p>
                             </div>
-                        <?php endforeach; ?>
-                    </div>
+                <?php else: ?>
+                            <div class="product-grid" id="product-grid">
+                                <?php foreach ($products as $p): ?>
+                                            <div class="product-card" data-category="<?= htmlspecialchars($p['category'] ?? '') ?>">
+                                                <a href="product.php?id=<?= $p['id'] ?>" class="product-image-wrap">
+                                                    <img alt="<?= htmlspecialchars($p['name']) ?>" class="product-image"
+                                                        src="<?= htmlspecialchars($p['image'] ?? 'https://via.placeholder.com/400') ?>" />
+                                                    <?php if ($p['stock'] <= 0): ?>
+                                                                <span class="product-badge badge-stock-out">OUT OF STOCK</span>
+                                                    <?php elseif ($p['stock'] < 5): ?>
+                                                                <span class="product-badge badge-stock-low">LOW STOCK</span>
+                                                    <?php else: ?>
+                                                                <span class="product-badge badge-category"><?= htmlspecialchars($p['category'] ?? 'NEW') ?></span>
+                                                    <?php endif; ?>
+                                                </a>
+                                                <div class="product-info">
+                                                    <a href="product.php?id=<?= $p['id'] ?>" class="product-name"><?= htmlspecialchars($p['name']) ?></a>
+                                                    <p class="product-price">$<?= number_format($p['price'], 2) ?></p>
+                                                    <div class="product-actions">
+                                                        <form action="cart-action.php" method="POST">
+                                                            <input type="hidden" name="product_id" value="<?= $p['id'] ?>">
+                                                            <input type="hidden" name="action" value="add">
+                                                            <button type="submit" class="btn btn-primary" <?= $p['stock'] <= 0 ? 'disabled' : '' ?>>
+                                                                <?= $p['stock'] <= 0 ? 'Out of Stock' : 'Add to Cart' ?>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                <?php endforeach; ?>
+                            </div>
                 <?php endif; ?>
             </div>
         </section>

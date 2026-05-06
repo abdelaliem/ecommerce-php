@@ -13,7 +13,7 @@ $product_id = (int) ($_POST['product_id'] ?? 0);
 
 if ($action === 'add' && $product_id > 0) {
     // Fetch product to check stock
-    $stmt = $conn->prepare("SELECT id, name, price, stock FROM products WHERE id = ?");
+    $stmt = $conn->prepare("SELECT id, name, price, stock, image FROM products WHERE id = ?");
     $stmt->bind_param("i", $product_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -30,7 +30,16 @@ if ($action === 'add' && $product_id > 0) {
         $found = false;
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['id'] == $product_id) {
-                $item['quantity']++;
+                if ($item['quantity'] < $product['stock']) {
+                    $item['quantity']++;
+                    $_SESSION['flash'] = 'Product added to cart!';
+                } else {
+                    $_SESSION['flash'] = 'Cannot add more. Only ' . $product['stock'] . ' in stock.';
+                }
+                // Ensure image is set (in case it was added before the image field was implemented)
+                if (!isset($item['image']) || empty($item['image'])) {
+                    $item['image'] = $product['image'];
+                }
                 $found = true;
                 break;
             }
@@ -41,11 +50,11 @@ if ($action === 'add' && $product_id > 0) {
                 'id' => $product['id'],
                 'name' => $product['name'],
                 'price' => $product['price'],
-                'quantity' => 1
+                'quantity' => 1,
+                'image' => $product['image']
             ];
+            $_SESSION['flash'] = 'Product added to cart!';
         }
-
-        $_SESSION['flash'] = 'Product added to cart!';
     } else {
         $_SESSION['flash'] = 'Product out of stock or not found.';
     }
