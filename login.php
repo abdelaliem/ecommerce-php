@@ -38,6 +38,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['role'] = $user['role'];
 
+                if (isset($_POST['remember_me'])) {
+                    $token = bin2hex(random_bytes(32));
+                    $hashed_token = hash('sha256', $token);
+                    $update_stmt = $conn->prepare("UPDATE users SET remember_token = ? WHERE id = ?");
+                    $update_stmt->bind_param('si', $hashed_token, $user['id']);
+                    $update_stmt->execute();
+                    $update_stmt->close();
+                    setcookie('remember_me', $user['id'] . ':' . $token, time() + (86400 * 30), "/", "", false, true);
+                }
+
+
                 if ($user['role'] === 'admin') {
                     header('Location: Admin/home.php');
                 } else {
@@ -112,6 +123,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </svg>
                         </button>
                     </div>
+                </div>
+
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 24px;">
+                    <input type="checkbox" id="remember_me" name="remember_me" style="width:16px; height:16px;">
+                    <label for="remember_me" style="font-size: 0.875rem; color: #434653; cursor: pointer;">Remember me</label>
                 </div>
 
                 <button type="submit" class="btn-submit" id="signin-btn">Sign In</button>
