@@ -190,6 +190,9 @@ $avatar_url = $user['profile_pic'] ? htmlspecialchars($user['profile_pic']) : 'h
                 <a href="?tab=account" class="side-link <?= $tab === 'account' ? 'active' : '' ?>">
                     <i class="bi bi-person"></i> Account Info
                 </a>
+                <a href="chat.php" class="side-link">
+                    <i class="bi bi-chat-dots"></i> Support Chat
+                </a>
             </nav>
         </div>
 
@@ -391,7 +394,7 @@ $avatar_url = $user['profile_pic'] ? htmlspecialchars($user['profile_pic']) : 'h
                                         <?= $recent_order['status'] === 'delivered' ? 'Delivered to' : 'Shipping to' ?>
                                         <?= htmlspecialchars($user['address_line1'] ?: $recent_order['address']) ?>
                                     </div>
-                                    <a href="#" class="btn btn-primary">
+                                    <a href="order-details.php?id=<?= $recent_order['id'] ?>" class="btn btn-primary">
                                         View Details <i class="bi bi-arrow-right" style="margin-left:0.4rem;"></i>
                                     </a>
                                 </div>
@@ -422,7 +425,7 @@ $avatar_url = $user['profile_pic'] ? htmlspecialchars($user['profile_pic']) : 'h
                                                             <div class="older-price">$<?= number_format($o['total'], 2) ?></div>
                                                             <div class="older-status"><?= htmlspecialchars($o['status']) ?></div>
                                                         </div>
-                                                        <a href="#" class="btn btn-outline">View Details</a>
+                                                        <a href="order-details.php?id=<?= $o['id'] ?>" class="btn btn-outline">View Details</a>
                                                     </div>
                                                 </div>
                                         <?php endfor; ?>
