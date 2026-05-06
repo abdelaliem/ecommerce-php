@@ -1,14 +1,13 @@
-<?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-require_once __DIR__ . '/../config.php';
-require_once __DIR__ . '/db.php';
-?>
     </main>
-    <footer class="main-footer">
-        <div class="footer-container">
-            <p>&copy; <?php echo date('Y'); ?> ElectroMart. All rights reserved.</p>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">AuraCommerce</div>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <div class="footer-copy">© <?= date('Y') ?> AuraCommerce. All rights reserved.</div>
         </div>
     </footer>
 </body>
